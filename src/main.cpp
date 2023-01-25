@@ -11,7 +11,7 @@ int main(int argc, char** argv)
     std::vector<Token> list;
     
     if(!Tokenize(list, "CuildFile"))
-        exit(-1);
+        return -1;
 
     size_t i = 0;
     while(i < list.size())
