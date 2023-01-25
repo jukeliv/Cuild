@@ -1,13 +1,4 @@
-#pragma once
-
-#include <sstream>
-#include <fstream>
-#include <string>
-
-void zero(void* ptr, size_t len)
-{
-    memset(ptr, 0, len);
-}
+#include "utility.h"
 
 std::string read(const char* path)
 {

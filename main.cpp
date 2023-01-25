@@ -1,6 +1,6 @@
-#include "utility.hpp"
-#include "token.hpp"
 #include <stdlib.h>
+#include "utility.h"
+#include "token.h"
 
 int main(int argc, char** argv)
 {

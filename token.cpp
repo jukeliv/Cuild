@@ -1,35 +1,4 @@
-#pragma once
-
-#include <vector>
-#include "utility.hpp"
-
-typedef enum _TokenType
-{
-    //RESERVED KEYWORDS
-    ERROR,      //0
-    CCOMPILER,  //1
-    PROJECTNAME,//2
-    LIBRARY,    //3
-    COMPILE,    //4
-    FLAGS,      //5
-    CFILE,      //6
-    //REGULAR KEYWORDS
-    ID,         //7
-    COLON,      //8
-    COMMA,      //9
-    OPEN,       //10
-    CLOSE,      //11
-}TokenType;
-
-class Token
-{
-public:
-    Token(std::string val, TokenType type)
-    :value(val), type(type){}
-
-    std::string value;
-    TokenType type;
-};
+#include "token.h"
 
 TokenType KEYWORD(std::string word)
 {
@@ -65,7 +34,7 @@ bool Tokenize(std::vector<Token>& list, std::string sourceCode)
     int i = 0;
     while(sourceCode[i] != '\0')
     {
-        zero(lex, 256);
+        memset(lex, 0, 256);
 
         if(is_space(sourceCode[i]))
         {
@@ -108,14 +77,6 @@ bool Tokenize(std::vector<Token>& list, std::string sourceCode)
                     lexi = 0;
                     continue;
                 }
-                /*
-                else if(sourceCode[i] == '\0')
-                {
-                    lex[0] = '\0';
-                    list.push_back(Token(lex, OPEN));
-                    return true;
-                    break;
-                }*/
                 else if(sourceCode[i] != '\0')
                 {
                     fprintf(stderr, "Unknown character found in Cuil file: \"%c\" %i\n", sourceCode[i], i);
