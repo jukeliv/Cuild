@@ -4,14 +4,6 @@
 #include <string>
 #include "utility.h"
 
-#ifndef VER
-    #define VER "1.1.0(RELEASE)"
-#endif
-
-#ifndef TARGET
-    #define TARGET "Win"
-#endif
-
 typedef enum _TokenType
 {
     //RESERVED KEYWORDS

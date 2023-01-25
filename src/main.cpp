@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "../include/bd.h"
 #include "../include/token.h"
 
 int main(int argc, char** argv)
@@ -20,8 +21,8 @@ int main(int argc, char** argv)
     {
         if(!strcmp(argv[1], "-h") || !strcmp(argv[1], "-help") || !strcmp(argv[1], "-H"))
         {
-            printf("Cuild-%s %s\n", TARGET, VER);
-            printf("%s\n", "\nCuildFile:\nPROJ: Executable file's name\nCC: C/C++ Compiler\nFLAGS: Compiler flags ( every time you set it, it concatenates the flags to a string, not just sets it)\nFILES: Source files going to compile ( concatenates the same as `FLAGS` )");
+            printf("Cuild: %s\n\n", build_data().c_str());
+            printf("%s\n", "PROJ: Executable file's name\nCC: C/C++ Compiler\nFLAGS: Compiler flags ( every time you set it, it concatenates the flags to a string, not just sets it)\nFILES: Source files going to compile ( concatenates the same as `FLAGS` )\nSTD: Standard library version\nOBJS: path where the .o files are stored");
             return 0;
         }
         else
