@@ -6,25 +6,29 @@ TokenType KEYWORD(std::string word)
     {
         return CCOMPILER;
     }
-    else if(word == "PROJ")
+    if(word == "PROJ")
     {
         return PROJECTNAME;
     }
-    else if(word == "LIB")
+    if(word == "LIB")
     {
         return LIBRARY; // I completley forgot about `library`
     }
-    else if(word == "FILES")
+    if(word == "FILES")
     {
         return CFILE;
     }
-    else if(word == "FLAGS")
+    if(word == "FLAGS")
     {
         return FLAGS;
     }
-    else if(word == "STD")
+    if(word == "STD")
     {
         return STD;
+    }
+    if(word == "OBJS")
+    {
+        return OBJS;
     }
 
     return ERROR;

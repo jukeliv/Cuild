@@ -1,6 +1,9 @@
 PROJ: hello
+OBJS: obj
+
 CC: clang
 STD: c11
+
 FILES: hello.c
 FILES: main.c
 

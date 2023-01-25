@@ -5,7 +5,7 @@
 #include "utility.h"
 
 #ifndef VER
-    #define VER "1.0.0(RELEASE)"
+    #define VER "1.1.0(RELEASE)"
 #endif
 
 #ifndef TARGET
@@ -23,12 +23,13 @@ typedef enum _TokenType
     FLAGS,      //5
     CFILE,      //6
     STD,        //7
+    OBJS,       //8
     //REGULAR KEYWORDS
-    ID,         //8
-    COLON,      //9
-    COMMA,      //10
-    OPEN,       //11
-    CLOSE,      //12
+    ID,         //9
+    COLON,      //10
+    COMMA,      //11
+    OPEN,       //12
+    CLOSE,      //13
 }TokenType;
 
 class Token

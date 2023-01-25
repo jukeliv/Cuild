@@ -34,4 +34,4 @@ FLAGS: Wall
 ```
 
 ##  OUPUT: ( to compile on the terminal, you need to have cuild somewhere and call `cuild`)
-`clang main.c -o test.exe -Wall`
+`clang main.c -o test.exe -std=c11 -Wall`

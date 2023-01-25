@@ -11,8 +11,9 @@ int main(int argc, char** argv)
         ext=".exe";
 
     std::string c_compiler;
-    std::string c_files;
+    std::vector<std::string> c_files;
     std::string compiler_flags;
+    std::string obj_folder;
     std::string libraries;
 
     if(argc > 1)
@@ -114,16 +115,17 @@ int main(int argc, char** argv)
                 fprintf(stderr, "Can't set \"LIB\" to a non-usable value\n");
                 return -1;
             }
+            
+            i+=2;
 
-            if(list[i+3].type != COMMA)
+            if(list[i+1].type != COMMA)
             {
                 libraries += " -l" + list[i+2].value;
                 continue;
             }
             
-            libraries += " -L " + list[i+4].value + " -l " + list[i+2].value;
+            libraries += " -L " + list[i+2].value + " -l " + list[i].value;
             
-            i+=2;
             continue;
         }
 
@@ -157,23 +159,76 @@ int main(int argc, char** argv)
                 return -1;
             }
             
-            c_files += list[i+2].value + " ";
+            c_files.push_back(list[i+2].value);
+            
+            i+=2;
+            continue;
+        }
+
+        if(list[i].type == OBJS){
+            if(list[i+1].type != COLON)
+            {
+                fprintf(stderr, "Can't call \"OBJS\" for something that is not setting it\n");
+                return -1;
+            }
+            if(list[i+2].type != ID)
+            {
+                fprintf(stderr, "Can't set \"OBJS\" to a non-usable value\n");
+                return -1;
+            }
+            
+            obj_folder = list[i+2].value;
             
             i+=2;
             continue;
         }
         i++;
     }
-    if(c_compiler.empty() || c_files.empty() || project_name.empty())
+    if(c_compiler.empty())
     {
-        fprintf(stderr, "Check mate, you forgot to add somme of these 3:\n");
-        printf("\"CC\" | \"PROJ\" \"FILES\"");
+        fprintf(stderr, "Check mate, you forgot to give \"CC\" a value!!!");
+        return -1;
+    }
+    else if(c_files.empty()) // IF 0 is empty, there is nothing here ( but if it is empty, 0 doesn't exist and it crashes )
+    {
+        fprintf(stderr, "Check mate, you forgot to give \"FILES\" a value!!!");
+        return -1;
+    }
+    else if(project_name.empty())
+    {
+        fprintf(stderr, "Check mate, you forgot to give \"PROJ\" a value!!!");
         return -1;
     }
 
-    std::string command;
-    command += c_compiler + " ";
-    command += c_files;
+    for( int i = 0; i < c_files.size(); i++)
+    {
+        std::string command;
+        command += c_compiler + " -c ";
+        command += c_files[i];
+
+        if(!obj_folder.empty())
+        {
+            std::string obj = c_files[i];
+            obj.pop_back();
+            obj.push_back('o');
+            command += " -o " + obj_folder + "/" + obj;
+        }
+        printf("%s\n", command.c_str());
+        system(command.c_str());
+    }
+
+    std::string command = c_compiler + " ";
+    for(int i = 0; i < c_files.size(); i++)
+    {
+        std::string file = c_files[i];
+        file.pop_back();
+        file.push_back('o');
+        if(!obj_folder.empty())
+            command += (obj_folder + "/" + file + " ");
+        else
+            command += (file + " ").c_str();
+    }
+
     command += "-o ";
     command += project_name + ext;
     command += std_lib_version;
