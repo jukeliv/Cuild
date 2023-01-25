@@ -62,9 +62,9 @@ bool Tokenize(std::vector<Token>& list, const char* path)
                 list.push_back(Token(lex, COLON));
                 break;
             default:    // HANDLE MULTIPLE-CHARACTER TOKENS
-                if(isalnum(sourceCode[i]) || sourceCode[i] == '+')
+                if(isalnum(sourceCode[i]) || sourceCode[i] == '+' || sourceCode[i] == '_')
                 {
-                    while(isalnum(sourceCode[i]) || sourceCode[i] == '.'  || sourceCode[i] == '+')
+                    while(isalnum(sourceCode[i]) || sourceCode[i] == '.'  || sourceCode[i] == '+' || sourceCode[i] == '_')
                         lex[lexi++] = sourceCode[i++];
 
                     if(KEYWORD(lex) == ERROR)
@@ -77,7 +77,7 @@ bool Tokenize(std::vector<Token>& list, const char* path)
                 }
                 else if(sourceCode[i] != '\0')
                 {
-                    fprintf(stderr, "Unknown character found in Cuil file: \"%c\" %i\n", sourceCode[i], i);
+                    fprintf(stderr, "Unknown character found in Cuild file: \"%c\" %i\n", sourceCode[i], i);
                     return false;
                 }
                 break;

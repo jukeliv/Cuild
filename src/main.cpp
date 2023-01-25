@@ -5,17 +5,19 @@ int main(int argc, char** argv)
 {
     std::string project_name;
     std::string ext = ".out";
+    if(!strcmp(TARGET, "Win"))
+        ext=".exe";
+
     std::string c_compiler;
     std::string c_files;
     std::string compiler_flags;
 
     if(argc > 1)
     {
-        if(!strcmp(argv[1], "-Win") || !strcmp(argv[1], "-Windows") || !strcmp(argv[1], "-windows"))// 
-            ext = ".exe";
-        else if(!strcmp(argv[1], "-h") || !strcmp(argv[1], "-help") || !strcmp(argv[1], "-H"))
+        if(!strcmp(argv[1], "-h") || !strcmp(argv[1], "-help") || !strcmp(argv[1], "-H"))
         {
-            printf("%s\n", "LINE COMMANDS:\n-Win: Set the target to Windows ( just add \"exe\" as the file extension )\n-h: Help command\n\nCUILD FILE:\nPROJ: Executable file's name\nCC: C/C++ Compiler\nFLAGS: Compiler flags ( every time you set it, it concatenates the flags to a string, not just sets it)\nFILES: Source files going to compile ( concatenates the same as `FLAGS` )");
+            printf("Cuild-%s %s\n", TARGET, VER);
+            printf("%s\n", "\nCuildFile:\nPROJ: Executable file's name\nCC: C/C++ Compiler\nFLAGS: Compiler flags ( every time you set it, it concatenates the flags to a string, not just sets it)\nFILES: Source files going to compile ( concatenates the same as `FLAGS` )");
             return 0;
         }
     }
