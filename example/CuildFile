@@ -1,0 +1,4 @@
+PROJ: hello
+CC: clang
+FILES: main.c
+FLAGS: Wall

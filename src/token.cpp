@@ -1,4 +1,4 @@
-#include "token.h"
+#include "../include/token.h"
 
 TokenType KEYWORD(std::string word)
 {
@@ -26,8 +26,9 @@ TokenType KEYWORD(std::string word)
     return ERROR;
 }
 
-bool Tokenize(std::vector<Token>& list, std::string sourceCode)
+bool Tokenize(std::vector<Token>& list, const char* path)
 {
+    std::string sourceCode = read(path);
     char lex[256];
     int lexi = 0;
 
@@ -64,9 +65,9 @@ bool Tokenize(std::vector<Token>& list, std::string sourceCode)
                 list.push_back(Token(lex, COLON));
                 break;
             default:    // HANDLE MULTIPLE-CHARACTER TOKENS
-                if(isalnum(sourceCode[i]) || sourceCode[i] == '.')
+                if(isalnum(sourceCode[i]) || sourceCode[i] == '+')
                 {
-                    while(isalnum(sourceCode[i]) || sourceCode[i] == '.')
+                    while(isalnum(sourceCode[i]) || sourceCode[i] == '.'  || sourceCode[i] == '+')
                         lex[lexi++] = sourceCode[i++];
 
                     if(KEYWORD(lex) == ERROR)

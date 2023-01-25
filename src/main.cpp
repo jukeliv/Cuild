@@ -1,6 +1,5 @@
 #include <stdlib.h>
-#include "utility.h"
-#include "token.h"
+#include "../include/token.h"
 
 int main(int argc, char** argv)
 {
@@ -9,10 +8,9 @@ int main(int argc, char** argv)
     std::string c_files;
     std::string compiler_flags;
 
-
     std::vector<Token> list;
     
-    if(!Tokenize(list, read("CuilFile")))
+    if(!Tokenize(list, "CuildFile"))
         exit(-1);
 
     size_t i = 0;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <string>
 #include "utility.h"
 
 typedef enum _TokenType
@@ -33,4 +34,4 @@ public:
 
 TokenType KEYWORD(std::string word);
 
-bool Tokenize(std::vector<Token>& list, std::string sourceCode);
+bool Tokenize(std::vector<Token>& list, const char* sourceCode);
