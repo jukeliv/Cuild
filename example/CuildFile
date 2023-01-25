@@ -1,4 +1,5 @@
 PROJ: hello
 CC: clang
+FILES: hello.c
 FILES: main.c
 FLAGS: Wall

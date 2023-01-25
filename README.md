@@ -1,7 +1,7 @@
 ### Cuild
 a simple Build System for C and C++ made to gain knowledge about Lexers and Parsers
 
-## HOW 2 USE CUILD???
+## HOW 2 USE CUILD??? ( see the example in `example` for more )
 the way it works is by setting this parameters:
 `PROJ`, `CC`, `FLAGS` and `FILES`
 

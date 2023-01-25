@@ -4,9 +4,21 @@
 int main(int argc, char** argv)
 {
     std::string project_name;
+    std::string ext = ".out";
     std::string c_compiler;
     std::string c_files;
     std::string compiler_flags;
+
+    if(argc > 1)
+    {
+        if(!strcmp(argv[1], "-Win") || !strcmp(argv[1], "-Windows") || !strcmp(argv[1], "-windows"))// 
+            ext = ".exe";
+        else if(!strcmp(argv[1], "-h") || !strcmp(argv[1], "-help") || !strcmp(argv[1], "-H"))
+        {
+            printf("%s\n", "LINE COMMANDS:\n-Win: Set the target to Windows ( just add \"exe\" as the file extension )\n-h: Help command\n\nCUILD FILE:\nPROJ: Executable file's name\nCC: C/C++ Compiler\nFLAGS: Compiler flags ( every time you set it, it concatenates the flags to a string, not just sets it)\nFILES: Source files going to compile ( concatenates the same as `FLAGS` )");
+            return 0;
+        }
+    }
 
     std::vector<Token> list;
     
@@ -80,20 +92,25 @@ int main(int argc, char** argv)
                 return -1;
             }
             
-            c_files += " " + list[i+2].value;
+            c_files += list[i+2].value + " ";
             
             i+=2;
             continue;
         }
         i++;
     }
+    if(c_compiler.empty() || c_files.empty() || project_name.empty())
+    {
+        fprintf(stderr, "Check mate, you forgot to add somme of these 3:\n");
+        printf("\"CC\" | \"PROJ\" \"FILES\"");
+        return -1;
+    }
 
-    //clang main.c -o test.exe
     std::string command;
-    command += c_compiler;
+    command += c_compiler + " ";
     command += c_files;
-    command += " -o ";
-    command += project_name + ".exe";
+    command += "-o ";
+    command += project_name + ext;
     command += compiler_flags;
 
     printf("%s\n", command.c_str());

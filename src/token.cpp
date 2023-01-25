@@ -35,13 +35,10 @@ bool Tokenize(std::vector<Token>& list, const char* path)
     int i = 0;
     while(sourceCode[i] != '\0')
     {
+        while(sourceCode[i] == ' ' || sourceCode[i] == '\t' || sourceCode[i] == '\n')
+            i++;
+        
         memset(lex, 0, 256);
-
-        if(is_space(sourceCode[i]))
-        {
-            while(is_space(sourceCode[i]))
-                i++;
-        }
 
         switch(sourceCode[i])
         {

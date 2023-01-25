@@ -25,10 +25,3 @@ std::string read(const char* path)
 
     return str;
 }
-
-bool is_space(char check)
-{
-    if(check == ' ' || check == '\t' || check == '\n')
-        return true;
-    return false;
-}
