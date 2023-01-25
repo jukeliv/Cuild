@@ -3,7 +3,7 @@
 
 int main(int argc, char** argv)
 {
-    std::string cuild_file = "CuildFile";
+    std::string cuild_file = "make";
     std::string std_lib_version = "c++11";
     std::string project_name;
     std::string ext = ".out";
@@ -26,13 +26,12 @@ int main(int argc, char** argv)
         else
         {
             cuild_file = argv[1];
-            cuild_file += ".CuildFile";
         }
     }
 
     std::vector<Token> list;
     
-    if(!Tokenize(list, cuild_file.c_str()))
+    if(!Tokenize(list, cuild_file.c_str() + ".CuildFile"))
         return -1;
 
     size_t i = 0;
