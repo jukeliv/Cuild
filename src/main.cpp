@@ -20,12 +20,12 @@ int main(int argc, char** argv)
             if(list[i+1].type != COLON)
             {
                 fprintf(stderr, "Can't call \"PROJ\" for something that is not setting it\n");
-                exit(-2);
+                return -1;
             }
             if(list[i+2].type != ID)
             {
                 fprintf(stderr, "Can't set \"PROJ\" to a non-usable value\n");
-                exit(-3);
+                return -1;
             }
 
             project_name = list[i+2].value;
@@ -37,12 +37,12 @@ int main(int argc, char** argv)
             if(list[i+1].type != COLON)
             {
                 fprintf(stderr, "Can't call \"CC\" for something that is not setting it\n");
-                exit(-2);
+                return -1;
             }
             if(list[i+2].type != ID)
             {
                 fprintf(stderr, "Can't set \"CC\" to a non-usable value\n");
-                exit(-3);
+                return -1;
             }
 
             c_compiler = list[i+2].value;
@@ -54,12 +54,12 @@ int main(int argc, char** argv)
             if(list[i+1].type != COLON)
             {
                 fprintf(stderr, "Can't call \"FLAGS\" for something that is not setting it\n");
-                exit(-2);
+                return -1;
             }
             if(list[i+2].type != ID)
             {
                 fprintf(stderr, "Can't set \"FLAGS\" to a non-usable value\n");
-                exit(-3);
+                return -1;
             }
             
             compiler_flags += " -" + list[i+2].value;
@@ -72,12 +72,12 @@ int main(int argc, char** argv)
             if(list[i+1].type != COLON)
             {
                 fprintf(stderr, "Can't call \"FILES\" for something that is not setting it\n");
-                exit(-2);
+                return -1;
             }
             if(list[i+2].type != ID)
             {
                 fprintf(stderr, "Can't set \"FILES\" to a non-usable value\n");
-                exit(-3);
+                return -1;
             }
             
             c_files += " " + list[i+2].value;
