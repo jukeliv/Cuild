@@ -4,7 +4,7 @@
 int main(int argc, char** argv)
 {
     std::string cuild_file = "make";
-    std::string std_lib_version = "c++11";
+    std::string std_lib_version = "";
     std::string project_name;
     std::string ext = ".out";
     if(!strcmp(TARGET, "Win"))
@@ -31,13 +31,18 @@ int main(int argc, char** argv)
 
     std::vector<Token> list;
     
-    if(!Tokenize(list, cuild_file.c_str() + ".CuildFile"))
+    if(!Tokenize(list, (cuild_file + ".CuildFile").c_str()))
         return -1;
 
     size_t i = 0;
     while(i < list.size())
     {
         if(list[i].type == STD){
+            if(!std_lib_version.empty())
+            {
+                fprintf(stderr, "Can't re-set the value of \"STD\"");
+                return -1;
+            }
             if(list[i+1].type != COLON)
             {
                 fprintf(stderr, "Can't call \"STD\" for something that is not setting it\n");
@@ -49,7 +54,7 @@ int main(int argc, char** argv)
                 return -1;
             }
 
-            std_lib_version = list[i+2].value;
+            std_lib_version = " -std=" + list[i+2].value;
             i+=2;
             continue;
         }
@@ -171,7 +176,7 @@ int main(int argc, char** argv)
     command += c_files;
     command += "-o ";
     command += project_name + ext;
-    command += " -std=" + std_lib_version;
+    command += std_lib_version;
     command += compiler_flags;
     command += libraries;
 

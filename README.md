@@ -3,9 +3,11 @@ a simple Build System for C and C++ made to gain knowledge about Lexers and Pars
 
 ## HOW 2 USE CUILD??? ( see the example in `example` for more )
 the way it works is by setting this parameters:
-`PROJ`, `CC`, `FLAGS` and `FILES`
+`PROJ`, `STD`, `CC`, `FLAGS` and `FILES`
 
 `PROJ` -- Output file name
+
+`STD` -- Standard C/C++ library version
 
 `CC` -- C Compiler
 
@@ -24,8 +26,11 @@ this would set `PROJ` as `test`
 ``` cuild
 PROJ: test
 CC: clang
+STD: c11
+
 FILES: main.c
-FLAGS: Wall`
+
+FLAGS: Wall
 ```
 
 ##  OUPUT: ( to compile on the terminal, you need to have cuild somewhere and call `cuild`)

@@ -1,6 +1,6 @@
 PROJ: hello
 CC: clang
-
+STD: c11
 FILES: hello.c
 FILES: main.c
 
