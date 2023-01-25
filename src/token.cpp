@@ -12,7 +12,7 @@ TokenType KEYWORD(std::string word)
     }
     else if(word == "LIB")
     {
-        return LIBRARY;
+        return LIBRARY; // I completley forgot about `library`
     }
     else if(word == "FILES")
     {
@@ -21,6 +21,10 @@ TokenType KEYWORD(std::string word)
     else if(word == "FLAGS")
     {
         return FLAGS;
+    }
+    else if(word == "STD")
+    {
+        return STD;
     }
 
     return ERROR;
@@ -62,9 +66,9 @@ bool Tokenize(std::vector<Token>& list, const char* path)
                 list.push_back(Token(lex, COLON));
                 break;
             default:    // HANDLE MULTIPLE-CHARACTER TOKENS
-                if(isalnum(sourceCode[i]) || sourceCode[i] == '+' || sourceCode[i] == '_')
+                if(isalpha(sourceCode[i]))
                 {
-                    while(isalnum(sourceCode[i]) || sourceCode[i] == '.'  || sourceCode[i] == '+' || sourceCode[i] == '_')
+                    while(isalpha(sourceCode[i]))
                         lex[lexi++] = sourceCode[i++];
 
                     if(KEYWORD(lex) == ERROR)

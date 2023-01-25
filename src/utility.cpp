@@ -1,5 +1,10 @@
 #include "../include/utility.h"
 
+bool isalpha(char c)
+{
+    return(isalnum(c) || c == '.'  || c == '+' || c == '_' || c == '/' || c == '\\');
+}
+
 std::string read(const char* path)
 {
     std::ifstream file(path);

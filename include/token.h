@@ -7,6 +7,7 @@
 #ifndef VER
     #define VER "1.0.0(RELEASE)"
 #endif
+
 #ifndef TARGET
     #define TARGET "Win"
 #endif
@@ -21,12 +22,13 @@ typedef enum _TokenType
     COMPILE,    //4
     FLAGS,      //5
     CFILE,      //6
+    STD,        //7
     //REGULAR KEYWORDS
-    ID,         //7
-    COLON,      //8
-    COMMA,      //9
-    OPEN,       //10
-    CLOSE,      //11
+    ID,         //8
+    COLON,      //9
+    COMMA,      //10
+    OPEN,       //11
+    CLOSE,      //12
 }TokenType;
 
 class Token

@@ -4,4 +4,5 @@
 #include <fstream>
 #include <string>
 
+bool isalpha(char c);
 std::string read(const char* path);

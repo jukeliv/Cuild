@@ -1,4 +1,4 @@
-### Cuild
+# Cuild (Syntax Highlight [here](https://github.com/jukeliv/Cuild-Highlight))
 a simple Build System for C and C++ made to gain knowledge about Lexers and Parsers
 
 ## HOW 2 USE CUILD??? ( see the example in `example` for more )
