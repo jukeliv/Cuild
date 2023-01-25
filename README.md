@@ -17,11 +17,11 @@ this would set PROJ as "test" and it would compile as "test.exe"
 
 ( this only sets the variable but for other things like FLAGS or FILES it adds that string to it, kinda strange but i like it so i ain't changing it )
 
-## EXAMPLE!!!
+# EXAMPLE!!!
 PROJ: test
 CC: clang
 FILES: main.c
 FLAGS: Wall
 
-### OUPUT:
+##  OUPUT:
 clang main.c -o test.exe -Wall
